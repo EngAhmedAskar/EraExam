@@ -33,10 +33,6 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
-  },
-  is_activate: {
-    type: boolean,
-    default: true
   }
 }, {
   timestamps: true
