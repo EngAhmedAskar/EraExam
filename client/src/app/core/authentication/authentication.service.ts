@@ -38,17 +38,15 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  login(context: LoginContext) {
-    console.log(context);
-      const user = {
-        name: 'ezesubu@era.com',
-        password: '12345'
+    login(context: LoginContext): Observable<Credentials> {
+      // Replace by proper authentication call
+      const data = {
+        username: context.username,
+        token: '123456'
       };
-     this.http.post(process.env.serverUrl, user )
-            .pipe(map( res => res.JSON()))
-            .subscribe( data =>  this.setCredentials(data, context.remember)
-           );
-  }
+      this.setCredentials(data, context.remember);
+      return of(data);
+    }
 
   /**
    * Logs out the user and clear credentials.
