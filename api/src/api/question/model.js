@@ -8,7 +8,7 @@ const questionSchema = new Schema({
     unique: true,
   },
   is_active: {
-    type: boolean,
+    type: Boolean,
     required: true
   },
   name: {
