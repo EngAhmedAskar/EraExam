@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-   private questions : Array<object>  ;
-   
-   private   mykey :String
-  constructor(private EraServiceService :EraServiceService) { 
+   public questions: Array<object> ;
+   private   mykey: String;
+
+   constructor(private EraServiceService :EraServiceService) {
 
    EraServiceService.getQuestions().subscribe(data=>this.questions= JSON.parse(data));
     console.log(this.mykey);

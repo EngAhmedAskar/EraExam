@@ -4,7 +4,7 @@ import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
 
-const roles = ['user', 'admin']
+const roles = ['student', 'admin', 'staff']
 
 const userSchema = new Schema({
   email: {
@@ -28,7 +28,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: roles,
-    default: 'user'
+    default: 'student'
   },
   picture: {
     type: String,
@@ -69,8 +69,9 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods = {
   view (full) {
+    console.log('full data', full)
     let view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'name', 'picture', 'role']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']

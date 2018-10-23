@@ -46,6 +46,7 @@ passport.use('password', new BasicStrategy((email, password, done) => {
       return null
     }
     return user.authenticate(password, user.password).then((user) => {
+
       done(null, user)
       return null
     }).catch(done)
