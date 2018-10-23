@@ -9,7 +9,7 @@ import env from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
-  serverUrl: 'http://localhost:9000/api',
+  serverUrl: 'http://localhost:9000/',
   loginUrl: 'http://localhost:9000/auth',
   serverJoke: 'https://api.chucknorris.io',
   apiToken: 'EraApi',
