@@ -10,6 +10,9 @@ export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
   serverUrl: 'http://0.0.0.0:9000/api',
+  loginUrl: 'http://0.0.0.0:9000/auth',
+  serverJoke: 'https://api.chucknorris.io',
+  apiToken: 'EraApi',
   defaultLanguage: 'en-US',
   supportedLanguages: [
     'en-US',
