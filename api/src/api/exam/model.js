@@ -1,8 +1,10 @@
-import mongoose, {Schema} from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
+const random = require('mongoose-simple-random');
 import { uid } from 'rand-token'
 
 const statuses = ['SENT', 'OPEND', 'ANSWERED', 'SUSPENDED']
 const resultes = ['PASS', 'FAIL']
+ 
 const examSchema = new Schema({
   email: {
     type: String,
@@ -53,8 +55,25 @@ const examSchema = new Schema({
   timestamps: true
 })
 
+examSchema.plugin(random);
 
-const model = mongoose.model('Exam', examSchema)
+examSchema.methods = {
+  view (full) {
+    let view = {}
+    let fields = ['_id', 'email', 'status']
+
+    if (full) {
+      fields = ['_id', 'email', 'status']
+    }
+
+    fields.forEach((field) => { view[field] = this[field] })
+
+    return view
+  },
+
+  
+}
+const model = mongoose.model('exam', examSchema)
 
 export const schema = model.schema
 export default model
