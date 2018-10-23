@@ -1,4 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
+const random = require('mongoose-simple-random');
+
 
  
 const questionSchema = new Schema({
@@ -13,6 +15,7 @@ const questionSchema = new Schema({
   },
 
 })
+questionSchema.plugin(random);
 
 questionSchema.methods = {
   view (full) {

@@ -6,8 +6,8 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     question.count(query)
         .then(count => question.find(query, select, cursor)
             .then(
-                // questions => ({
-                // questions: questions.map((question) => question.view())
+            //     questions => ({
+            //     questions: questions.map((question) => question.view())
                 
             // })
             )

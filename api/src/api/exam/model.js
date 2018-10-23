@@ -1,11 +1,10 @@
-import mongoose, {
-  Schema
-} from 'mongoose'
+import mongoose, {Schema} from 'mongoose'
+import { uid } from 'rand-token'
 
 const statuses = ['SENT', 'OPEND', 'ANSWERED', 'SUSPENDED']
 const resultes = ['PASS', 'FAIL']
 const examSchema = new Schema({
-  std_email: {
+  email: {
     type: String,
     match: /^\S+@\S+\.\S+$/,
     required: true,
@@ -25,13 +24,13 @@ const examSchema = new Schema({
     default: 'FAIL',
   },
   start_time: {
-    type: timestamps,
+    type: Date,
   },
   end_time: {
-    type: timestamps,
+    type: Date,
   },
   spent_time: {
-    type: number,
+    type: Number,
     default: 120,
   },
   questions: [{
@@ -43,13 +42,19 @@ const examSchema = new Schema({
     //I can calculate it based on last saved snapshot time
     spent_time: Number,
     snap_shots: [String]
-  }]
+  }],
+  token: {
+    type: String,
+    unique: true,
+    index: true,
+    default: () => uid(32)
+  },
 }, {
   timestamps: true
 })
 
 
-const model = mongoose.model('exam', examSchema)
+const model = mongoose.model('Exam', examSchema)
 
 export const schema = model.schema
 export default model

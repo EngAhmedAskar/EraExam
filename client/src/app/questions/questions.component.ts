@@ -9,12 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-   private questions : object[]  ;
+   private questions : Array<object>  ;
    
-   private   mykey :String[]
+   private   mykey :String
   constructor(private EraServiceService :EraServiceService) { 
-    this.questions =Array.of( EraServiceService.getQuestions());
-     
+
+   EraServiceService.getQuestions().subscribe(data=>this.questions= JSON.parse(data));
+    console.log(this.mykey);
+      EraServiceService.getQuestions().forEach(element => {
+        console.log(element);
+     });
 
   }
   ngOnInit() {

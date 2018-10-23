@@ -13,6 +13,7 @@ import { ShellModule } from './shell/shell.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { QuestionsModule } from '@app/questions/questions.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     ShellModule,
     HomeModule,
     LoginModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuestionsModule
   ],
   declarations: [AppComponent],
   providers: [
