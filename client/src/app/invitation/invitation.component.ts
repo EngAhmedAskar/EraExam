@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-invitation",
   templateUrl: "./invitation.component.html",
   styleUrls: ["./invitation.component.scss"]
 })
-export class InvitationComponent implements OnInit {
+export class InvitationComponent {
   myForm: FormGroup;
-
+  ngOnInit() {}
   constructor(private formBuilder: FormBuilder) {
     this.myForm = formBuilder.group({
       email: [
@@ -21,12 +21,11 @@ export class InvitationComponent implements OnInit {
         ]
       ]
     });
-
-    this.myForm.valueChanges.subscribe((data: any) => console.log(data));
+    // To logger the value not important now
+    // this.myForm.valueChanges.subscribe(
+    //   (data: any) => console.log(data)
+    // );
   }
-
-  ngOnInit() {}
-
   onSubmit() {
     console.log(this.myForm);
   }

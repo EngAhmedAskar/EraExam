@@ -6,7 +6,7 @@ import { InvitationComponent } from './invitation.component';
 
 const routes: Routes = [
   // Module is lazy loaded, see app-routing.module.ts
-  { path: '', component: InvitationComponent, data: { title: extract('Invitation') } }
+  { path: '', component: InvitationComponent }
 ];
 
 @NgModule({
