@@ -1,32 +1,36 @@
-import { Component } from "@angular/core";
-import { FormControl, FormGroup, FormBuilder, Validators } from "@angular/forms";
-
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { StudentService } from '@app/core/student/student.service';
+import { finalize } from 'rxjs/operators';
+import { ExamService } from '@app/core/exam/exam.service';
 @Component({
-  selector: "app-invitation",
-  templateUrl: "./invitation.component.html",
-  styleUrls: ["./invitation.component.scss"]
+  selector: 'app-invitation',
+  templateUrl: './invitation.component.html',
+  styleUrls: ['./invitation.component.scss']
 })
-export class InvitationComponent {
+export class InvitationComponent implements OnInit {
+
+  isLoading = false;
   myForm: FormGroup;
-  ngOnInit() {}
-  constructor(private formBuilder: FormBuilder) {
+  statusResponde: any;
+
+  constructor(private formBuilder: FormBuilder, private studentService: StudentService) {
     this.myForm = formBuilder.group({
       email: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern(
-            "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-          )
-        ]
+        '',
+        [Validators.required, Validators.email]
       ]
     });
-    // To logger the value not important now
-    // this.myForm.valueChanges.subscribe(
-    //   (data: any) => console.log(data)
-    // );
   }
+  ngOnInit() {}
   onSubmit() {
-    console.log(this.myForm);
+
+    this.isLoading = true;
+    //  retrive status
+    //  show error if
+    //  clear forms
+     this.studentService.sendInvitation( this.myForm.value.email )
+      .pipe( finalize ( () => { console.log( 'response service' ); }))
+      .subscribe( ( resp: Object ) => { this.statusResponde = resp; });
   }
 }

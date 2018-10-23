@@ -11,17 +11,17 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ExamComponent implements OnInit {
   data: Object;
-  private isLoading: boolean;
+  isLoading: boolean;
 
   constructor(private examService: ExamService,
               private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.isLoading = true ;
-    this.activatedRoute.queryParams.subscribe( (querys: Params) => {
-      this.examService.getByToken({token: querys.token })
+    // this.activatedRoute.queryParams.subscribe( (querys: Params) => {
+      this.examService.getByToken({token: 'querys.token' })
       .pipe( finalize( () => { this.isLoading = false; }))
-      .subscribe( ( e: Object ) => { this.data = e; });
-    });
+      .subscribe( ( resp: Object ) => { this.data = resp; });
+   // });
   }
 }

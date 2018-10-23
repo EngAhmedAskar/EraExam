@@ -14,6 +14,7 @@ import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
 import { CacheInterceptor } from './http/cache.interceptor';
 import { ExamService } from './exam/exam.service';
 import { ExamGuard } from './exam/exam.guard';
+import { StudentService } from './student/student.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ExamGuard } from './exam/exam.guard';
     CacheInterceptor,
     ExamService,
     ExamGuard,
+    StudentService,
     {
       provide: HttpClient,
       useClass: HttpService

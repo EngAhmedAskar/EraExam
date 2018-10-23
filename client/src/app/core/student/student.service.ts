@@ -1,33 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 const routes = {
-  quote: ( e: string) => `/resolve?token=${e}`
+  quote: (email: string) =>  `sendInvitation/email=${email}`
 };
-
-export interface TokenQuestion {
-  // the token taked from url
-  token: string;
-}
-
-export interface ListExams {
-  name: string;
-}
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExamService {
-  constructor(private httpClient: HttpClient) {}
-  getByToken(context: TokenQuestion): Observable<ListExams> {
+export class StudentService {
+  // retrive de status from the server
+
+  constructor(private httpClient: HttpClient) { }
+
+
+  sendInvitation(email: string ) {
+    console.log(email);
     return this.httpClient
             .cache()
-            .get(routes.quote(context.token))
+            .get(routes.quote(email))
             .pipe(
               map((body: any) => body),
               catchError(() => of('Error, could not load joke :-('))
             );
   }
+
 }
