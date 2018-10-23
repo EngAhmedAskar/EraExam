@@ -9,8 +9,12 @@
       <mat-card-subtitle>
       <ul>
         <!-- <li>{{question.rows[0].description}}</li> -->
+
+        <!-- <li *ngFor="let question of questions?.questions| async" >{{question}}</li> -->
+      </ul> 
         <!-- <li *ngFor="let question of questions| async" >{{question}}</li> -->
       </ul>
+
         <table>
           <tr *ngFor="let question of questions" >
             <td >{{question.description}}</td>

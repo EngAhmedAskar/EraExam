@@ -9,7 +9,7 @@ import { extract } from '@app/core';
 
 const QUESTION_ROUTER: Routes = [
   {
-    path: "",
+    path: "questions",
     component: QuestionsComponent,
     data: { title: extract('questions') }
     // children: [
@@ -23,7 +23,7 @@ const QUESTION_ROUTER: Routes = [
     
   },
   {
-    path: "addQuestion",
+    path: "addquestion",
     component : AddQuestionsComponent
   }
 ];

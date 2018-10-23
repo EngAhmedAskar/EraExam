@@ -26,11 +26,11 @@ export class EraServiceService {
   }
   addQuestion(Q : object): Observable<string> {
     return this.httpClient
-      .cache()
+      
       .post('/questions',Q)
       .pipe(
-        map((body: any) => body.value),
-        catchError(() => of('Error, could not load Questions :-('))
+        map((body: any) => body),
+        catchError((err) => of('Error, could not Add Question :-('+err))
       );
   }
   updateQuestion(Q : object,id:String): Observable<string> {
@@ -38,7 +38,7 @@ export class EraServiceService {
       .cache()
       .put('/questions/'+id,Q)
       .pipe(
-        map((body: any) => body.value),
+        map((body: any) => body),
         catchError(() => of('Error, could not load Questions :-('))
       );
   }
