@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from '@env/environment';
+
 
 export interface Credentials {
-  // Customize received credentials here
-  username: string;
+  user: object;
   token: string;
 }
-
 
 export interface LoginContext {
   username: string;
@@ -15,7 +16,7 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-const credentialsKey = 'credentials';
+const credentialsKey = 'environment.credentialsKey';
 
 /**
  * Provides a base for authentication workflow.
@@ -23,10 +24,8 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
-
   private _credentials: Credentials | null;
-
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -39,13 +38,22 @@ export class AuthenticationService {
    * @return {Observable<Credentials>} The user credentials.
    */
     login(context: LoginContext): Observable<Credentials> {
-      // Replace by proper authentication call
-      const data = {
-        username: context.username,
-        token: '123456'
+      const basicUser = window.btoa( context.username + ':' + context.password );
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Authorization': 'Basic ' + basicUser
+        })
       };
-      this.setCredentials(data, context.remember);
-      return of(data);
+      const resData =  this.httpClient
+                    .cache()
+                    .post(environment.loginUrl, {access_token: environment.apiToken }, httpOptions)
+                    .pipe(map( (e: Credentials) => e ));
+
+      resData.subscribe( (e: Credentials) => this.setCredentials(e , context.remember));
+
+      return resData;
+      // ;
+      // return of(data);
     }
 
   /**
@@ -81,7 +89,7 @@ export class AuthenticationService {
    * @param {Credentials=} credentials The user credentials.
    * @param {boolean=} remember True to remember credentials across sessions.
    */
-  private setCredentials(credentials?: Credentials, remember?: boolean) {
+  public setCredentials(credentials?: Credentials, remember?: boolean) {
     this._credentials = credentials || null;
 
     if (credentials) {

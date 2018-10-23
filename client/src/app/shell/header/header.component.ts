@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
-import { AuthenticationService, I18nService } from '@app/core';
+import { AuthenticationService, I18nService, Credentials } from '@app/core';
 
 @Component({
   selector: 'app-header',
@@ -38,9 +38,9 @@ export class HeaderComponent implements OnInit {
     return this.i18nService.supportedLanguages;
   }
 
-  get username(): string {
+  get username(): Credentials {
     const credentials = this.authenticationService.credentials;
-    return credentials ? credentials.username : null;
+    return credentials ? credentials : null;
   }
 
   get title(): string {
