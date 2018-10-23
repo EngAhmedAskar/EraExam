@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   get username(): string {
     const credentials = this.authenticationService.credentials;
-    return credentials ? credentials.username : null;
+    return credentials ? credentials : null;
   }
 
   get title(): string {
