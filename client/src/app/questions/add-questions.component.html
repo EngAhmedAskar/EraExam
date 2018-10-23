@@ -1,3 +1,25 @@
-<p>
-  add-questions works!
-</p>
+<div class="container">
+    <mat-card>
+      <mat-card-content>
+          <mat-card-title translate>Add Question</mat-card-title>
+          <mat-card-subtitle>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <label for="description">Question</label>
+              <input multiple type="text" class="form-control" id="description" formControlName="description">
+             
+              <br/>
+              <br/>
+  
+              <button mat-raised-button color="accent" [disabled]="!myForm.valid" type="submit" >
+                
+                <span>add question</span>
+              </button>
+          </div>
+  
+  
+        </form></mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

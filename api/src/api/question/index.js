@@ -7,7 +7,7 @@ import { schema } from './model'
 export question, { schema } from './model'
 
 const router = new Router()
-const { role,description,is_active } = schema.tree
+const { description,is_active } = schema.tree
 
 router.get('/',
   // token({ required: true, roles: ['admin'] }),
@@ -15,7 +15,7 @@ router.get('/',
   index)
 
   router.post('/',
-  master(),
+ 
   body({ description, is_active }),
   create)
   
