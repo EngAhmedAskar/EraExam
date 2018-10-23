@@ -1,4 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
+const random = require('mongoose-simple-random');
+
 
  
 const questionSchema = new Schema({
@@ -8,16 +10,29 @@ const questionSchema = new Schema({
     unique: true,
   },
   is_active: {
-    type: boolean,
+    type: Boolean,
     required: true
   },
-  name: {
-    type: String,
-    index: true,
-    trim: true
-  }
-})
 
+})
+questionSchema.plugin(random);
+
+questionSchema.methods = {
+  view (full) {
+    let view = {}
+    let fields = ['_id', 'description', 'is_active']
+
+    if (full) {
+      fields = ['_id', 'description', 'is_active']
+    }
+
+    fields.forEach((field) => { view[field] = this[field] })
+
+    return view
+  },
+
+  
+}
 const model = mongoose.model('question', questionSchema)
 
 export const schema = model.schema

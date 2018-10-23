@@ -15,9 +15,10 @@ export const notFound = (res) => (entity) => {
 
 export const authorOrAdmin = (res, user, userField) => (entity) => {
   if (entity) {
+    console.log('service.response.index Cheking rolls...')
     const isAdmin = user.role === 'admin'
-    const isAuthor = entity[userField] && entity[userField].equals(user.id)
-    if (isAuthor || isAdmin) {
+    const hasRole = entity[userField] && entity[userField].equals(user.id)
+    if (hasRole || isAdmin) {
       return entity
     }
     res.status(401).end()

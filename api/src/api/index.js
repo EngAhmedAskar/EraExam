@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import user from './user'
 import auth from './auth'
+import question from './question'
 import passwordReset from './password-reset'
+import exam from './exam'
 
 const router = new Router()
 
@@ -31,5 +33,6 @@ const router = new Router()
 router.use('/users', user)
 router.use('/auth', auth)
 router.use('/password-resets', passwordReset)
-
+router.use('/questions', question)
+router.use('/exam', exam)
 export default router

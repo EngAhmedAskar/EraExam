@@ -9,10 +9,12 @@ import { MaterialModule } from './material.module';
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
+import { ExamModule } from './exam/exam.module'
 import { ShellModule } from './shell/shell.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { QuestionsModule } from '@app/questions/questions.module';
 
 @NgModule({
   imports: [
@@ -26,8 +28,10 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     ShellModule,
     HomeModule,
+    ExamModule,
     LoginModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuestionsModule
   ],
   declarations: [AppComponent],
   providers: [
