@@ -34,5 +34,5 @@ router.use('/users', user)
 router.use('/auth', auth)
 router.use('/password-resets', passwordReset)
 router.use('/questions', question)
-router.use('/exam', exam)
+router.use('/exams', exam)
 export default router

@@ -24,7 +24,7 @@ myForm: FormGroup;
       is_active : true
      };
      this.eraService.addQuestion(this.question).subscribe(res=> console.log(res));
-    console.log(this.myForm.controls['description'].value);
+  
   }
   ngOnInit() {
   }

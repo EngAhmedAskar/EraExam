@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CountdownModule } from 'ngx-countdown';
 
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { ExamRouteModule } from './exam-routing.module';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ExamRouteModule } from './exam-routing.module';
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
-    ExamRouteModule
+    ExamRouteModule,
+    CountdownModule,
+    AceEditorModule
   ],
   declarations: [ExamComponent]
 })

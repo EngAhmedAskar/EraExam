@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
+import { Logger } from '../logger.service';
 
-import { Logger, I18nService, AuthenticationService, ExamService } from '@app/core';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 const log = new Logger('ExamGuard');
 
-@Injectable()
+@Injectable(
+)
 export class ExamGuard implements CanActivate {
 
   constructor(private router: Router,
-              private examService: ExamService,
-              private authenticationService: AuthenticationService) { }
+             private authenticationService: AuthenticationService) { }
 
   canActivate(): boolean {
     if (this.authenticationService.isAuthenticated()) {

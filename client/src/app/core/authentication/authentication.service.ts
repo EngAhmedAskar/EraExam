@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 
 
 export interface Credentials {
-  user: object;
+  user: Object;
   token: string;
 }
 
