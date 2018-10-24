@@ -11,7 +11,14 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { ExamRouteModule } from './exam-routing.module';
 import { AceEditorModule } from 'ng2-ace-editor';
+<<<<<<< HEAD
 import { ExamReviewComponent } from './exam-review.component';
+=======
+import { SuspendedComponent } from './suspended.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { CompatibilityComponent } from './compatibility.component';
+import { ThankyouComponent } from './thankyou.component';
+>>>>>>> 3f3afdf4ce1ccbb468f95eed69c5cbb16afc187c
 
 
 @NgModule({
@@ -24,8 +31,13 @@ import { ExamReviewComponent } from './exam-review.component';
     MaterialModule,
     ExamRouteModule,
     CountdownModule,
-    AceEditorModule
+    AceEditorModule,
+    DeviceDetectorModule.forRoot()
   ],
+<<<<<<< HEAD
   declarations: [ExamComponent, ExamReviewComponent]
+=======
+  declarations: [ExamComponent, SuspendedComponent, CompatibilityComponent, ThankyouComponent]
+>>>>>>> 3f3afdf4ce1ccbb468f95eed69c5cbb16afc187c
 })
 export class ExamModule { }

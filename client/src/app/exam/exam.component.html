@@ -4,6 +4,8 @@
   </countdown>
 </div>
 <div *ngIf="opened">
+<!-- 
+<div> -->
   <div class="container">
 
     <mat-card *ngFor="let question of exam.questions">
@@ -13,29 +15,22 @@
       <p>
         {{ question.description }}
       </p>
+<<<<<<< HEAD
  
       <ace-editor [(text)]="text" [mode]="'sql'" 
                   [theme]="'eclipse'" [options]="editorOptions" [readOnly]="false"
                   [autoUpdateContent]="true" [durationBeforeCallback]="1000" 
                   (textChanged)="onChange($event, question._id)" ></ace-editor>
+=======
+
+      <!--  possible two way binding (thx ChrisProlls) -->
+      <ace-editor [(text)]="question.answer" [mode]="'javascript'" [options]="editorOptions" [readOnly]="false" [autoUpdateContent]="true"
+        [durationBeforeCallback]="1000" (textChanged)="onChange($event, question._id)"
+        style="min-height: 200px; width:100%; overflow: auto;"></ace-editor>
+>>>>>>> 3f3afdf4ce1ccbb468f95eed69c5cbb16afc187c
 
     </mat-card>
 
-    <mat-card>
-        <mat-card-title>
-          Question:
-        </mat-card-title>
-        <p>
-        
-        </p>
-  
-        <!--  possible two way binding (thx ChrisProlls) -->
-        <ace-editor [(text)]="text" [mode]="'javascript'" 
-                    [theme]="'eclipse'" [options]="editorOptions" [readOnly]="false"
-                    [autoUpdateContent]="true" [durationBeforeCallback]="1000" 
-                    style="min-height: 200px; width:100%; overflow: auto;"></ace-editor>
-  
-      </mat-card>
     <button mat-raised-button color="accent" (click)="onSubmit()">
       Submit Answer
     </button>
