@@ -9,19 +9,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-   public questions: Array<object> ;
-   private   mykey: String;
-
-   constructor(private EraServiceService :EraServiceService) {
+   private questions : Array<object>  ;
+   
+   
+  constructor(private EraServiceService :EraServiceService) { 
 
    EraServiceService.getQuestions().subscribe(data=>this.questions= JSON.parse(data));
-    console.log(this.mykey);
-      EraServiceService.getQuestions().forEach(element => {
-        console.log(element);
-     });
+    
 
   }
   ngOnInit() {
   }
-
+  updateQ(e:object){
+  if (e.is_active=true) {
+    e.is_active=false;
+  }else{
+    e.is_active=true;
+  }
+     this.EraServiceService.updateQuestion(e,e._id);
+   
+  }
 }

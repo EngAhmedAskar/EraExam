@@ -36,11 +36,14 @@ export const create = ({ bodymen: { body } }, res, next) =>
 
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
+
     question.findById(params.id)
         .then(notFound(res))
         .then((result) => {
+           
             if (!result) return null
             // const isAdmin = question.role === 'admin'
+          
             const isSelfUpdate = params.id === result.id
             if (!isSelfUpdate) {
                 res.status(401).json({

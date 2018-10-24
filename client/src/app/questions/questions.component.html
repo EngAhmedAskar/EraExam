@@ -10,8 +10,11 @@
           <tr *ngFor="let question of questions" >
             <td >{{question.description}}</td>
             <td>
-                <input  type="checkbox" ng-checked="[question.is_active]"   >
-                {{question.is_active}}
+                <input type="checkbox" [checked]="question.is_active" (change)="updateQ(question)">
+                
+              </td>
+            <td>
+               
             
             </td>
           </tr>

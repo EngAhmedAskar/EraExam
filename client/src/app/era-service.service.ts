@@ -34,12 +34,14 @@ export class EraServiceService {
       );
   }
   updateQuestion(Q : object,id:String): Observable<string> {
+    console.log(Q);
+    console.log(id);
     return this.httpClient
       .cache()
       .put('/questions/'+id,Q)
       .pipe(
         map((body: any) => body),
-        catchError(() => of('Error, could not load Questions :-('))
+        catchError(() => of('Error, could not update Question :-('))
       );
   }
 }
