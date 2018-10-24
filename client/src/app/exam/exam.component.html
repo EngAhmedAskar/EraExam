@@ -1,10 +1,51 @@
-<div class="container">
+<div class='counter-middle'>
+  <countdown [config]="config" (start)="onStart()" (finished)="onFinished()">
+    $!h!:$!m!:$!s!
+  </countdown>
+</div>
+<div *ngIf="opened">
+  <div class="container">
+
+    <mat-card *ngFor="let question of exam.questions">
+      <mat-card-title>
+        Question:
+      </mat-card-title>
+      <p>
+        {{ question.description }}
+      </p>
+
+      <!--  possible two way binding (thx ChrisProlls) -->
+      <ace-editor [(text)]="text" [mode]="'sql'" 
+                  [theme]="'eclipse'" [options]="editorOptions" [readOnly]="false"
+                  [autoUpdateContent]="true" [durationBeforeCallback]="1000" 
+                  (textChanged)="onChange($event, question._id)" ></ace-editor>
+
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>
+          Question:
+        </mat-card-title>
+        <p>
+        
+        </p>
+  
+        <!--  possible two way binding (thx ChrisProlls) -->
+        <ace-editor [(text)]="text" [mode]="'javascript'" 
+                    [theme]="'eclipse'" [options]="editorOptions" [readOnly]="false"
+                    [autoUpdateContent]="true" [durationBeforeCallback]="1000" 
+                    style="min-height: 200px; width:100%; overflow: auto;"></ace-editor>
+  
+      </mat-card>
+    <button mat-raised-button color="accent" (click)="onSubmit()">
+      Submit Answer
+    </button>
+  </div>
+</div>
+<div class="center" *ngIf="!opened">
   <mat-card>
-    <h1>
-      <mat-card-title translate>APP_NAME</mat-card-title>
-    </h1>
-    <mat-card-content>
-    i'm here ezesubu
-    </mat-card-content>
+    <mat-card-title>
+      {{ error }}
+    </mat-card-title>
   </mat-card>
 </div>
