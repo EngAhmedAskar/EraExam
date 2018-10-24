@@ -26,7 +26,6 @@ export class EraServiceService {
   }
   addQuestion(Q : object): Observable<string> {
     return this.httpClient
-      
       .post('/questions',Q)
       .pipe(
         map((body: any) => body),
@@ -37,8 +36,7 @@ export class EraServiceService {
     console.log(Q);
     console.log(id);
     return this.httpClient
-      .cache()
-      .put('/questions/'+id,Q)
+      .put('/questions/5bcf780c331c691094457cb3', Q)
       .pipe(
         map((body: any) => body),
         catchError(() => of('Error, could not update Question :-('))

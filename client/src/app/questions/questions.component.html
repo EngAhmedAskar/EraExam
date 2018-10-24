@@ -7,12 +7,6 @@
     <mat-card-content>
       <!-- <mat-card-title translate>{{question.rows[0].is_active}}</mat-card-title> -->
       <mat-card-subtitle>
-      <ul>
-        <!-- <li>{{question.rows[0].description}}</li> -->
-
-        <!-- <li *ngFor="let question of questions?.questions| async" >{{question}}</li> -->
-      </ul>
-        <li *ngFor="let question of questions| async" >{{question}}</li>
         <table>
           <tr *ngFor="let question of questions" >
             <td>{{question.description}}</td>
@@ -22,10 +16,6 @@
                 
               </td>
             <td>
-               
-            
-
-         
             </td>
           </tr>
         </table>
