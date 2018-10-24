@@ -13,8 +13,7 @@
       <p>
         {{ question.description }}
       </p>
-
-      <!--  possible two way binding (thx ChrisProlls) -->
+ 
       <ace-editor [(text)]="text" [mode]="'sql'" 
                   [theme]="'eclipse'" [options]="editorOptions" [readOnly]="false"
                   [autoUpdateContent]="true" [durationBeforeCallback]="1000" 

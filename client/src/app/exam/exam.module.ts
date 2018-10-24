@@ -11,6 +11,7 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { ExamRouteModule } from './exam-routing.module';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { ExamReviewComponent } from './exam-review.component';
 
 
 @NgModule({
@@ -25,6 +26,6 @@ import { AceEditorModule } from 'ng2-ace-editor';
     CountdownModule,
     AceEditorModule
   ],
-  declarations: [ExamComponent]
+  declarations: [ExamComponent, ExamReviewComponent]
 })
 export class ExamModule { }

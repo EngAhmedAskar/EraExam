@@ -25,7 +25,17 @@ export class ExamService {
             .get(routes.quote(context.token))
             .pipe(
               map((body: any) => body),
-              catchError(() => of('Error, could not load joke :-('))
+              catchError(() => of('Error, could not load exam :-('))
             );
   }
+  getExams(): Observable<String> {
+    return this.httpClient
+            .cache()
+            .get('/exams')
+            .pipe(
+              map((body: any) => body),
+              catchError(() => of('Error, could not load Exams :-('))
+            );
+  }
+
 }
