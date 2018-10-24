@@ -21,25 +21,6 @@ export class ExamService {
   constructor(private httpClient: HttpClient) {}
   getByToken(context: TokenQuestion): Observable<ListExams> {
     return this.httpClient
-<<<<<<< HEAD
-            .cache()
-            .get(routes.quote(context.token))
-            .pipe(
-              map((body: any) => body),
-              catchError(() => of('Error, could not load exam :-('))
-            );
-  }
-  getExams(): Observable<String> {
-    return this.httpClient
-            .cache()
-            .get('/exams')
-            .pipe(
-              map((body: any) => body),
-              catchError(() => of('Error, could not load Exams :-('))
-            );
-  }
-
-=======
       .cache()
       .get(routes.quote(context.token))
       .pipe(
@@ -74,5 +55,14 @@ export class ExamService {
   // getByToken(context: TokenQuestion): Promise<any> {
   //   return this.httpClient.get(routes.quote(context.token)).toPromise();
   // }
->>>>>>> 3f3afdf4ce1ccbb468f95eed69c5cbb16afc187c
+
+  getExams(): Observable<String> {
+    return this.httpClient
+      .cache()
+      .get('/exams')
+      .pipe(
+        map((body: any) => body),
+        catchError(() => of('Error, could not load Exams :-('))
+      );
+  }
 }
