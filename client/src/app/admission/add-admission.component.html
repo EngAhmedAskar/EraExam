@@ -6,16 +6,19 @@
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <div>
-              <label for="email">Email</label>
-              <input  type="text" class="form-control" id="email" formControlName="email">
+                <mat-form-field>
+              <input matInput placeholder="Enter Your E-mail "  type="text" class="form-control" id="email" formControlName="email">
+            </mat-form-field>
             </div>
             <div>
-                <label for="name">Name</label>
-                <input  type="text" class="form-control" id="name" formControlName="name">
+                <mat-form-field>
+                <input matInput placeholder="Enter Your Name "  type="text" class="form-control" id="name" formControlName="name">
+              </mat-form-field>
               </div>
               <div>
-                  <label for="password">Password</label>
-                  <input  type="text" class="form-control" id="password" formControlName="password">
+                  <mat-form-field>
+                  <input matInput placeholder="Enter Password  "  type="text" class="form-control" id="password" formControlName="password">
+                </mat-form-field>
                 </div>
               <br/>
               <br/>

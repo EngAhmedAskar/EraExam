@@ -6,14 +6,13 @@ const routes: Routes = [
   Shell.childRoutes([
     { path: 'about', loadChildren: 'app/about/about.module#AboutModule' },
     { path: 'invitation', loadChildren: 'app/invitation/invitation.module#InvitationModule' },
-<<<<<<< HEAD
-    
-{ path: '', loadChildren: 'app/questions/questions.module#QuestionsModule' },
-{ path: '', loadChildren: 'app/admission/admission.module#AdmissionModule' }
 
-=======
-    { path: '', loadChildren: 'app/questions/questions.module#QuestionsModule' }
->>>>>>> b9f5cbcf0df4aa5863fe886dee6c24d131169718
+
+    { path: '', loadChildren: 'app/questions/questions.module#QuestionsModule' },
+    { path: '', loadChildren: 'app/admission/admission.module#AdmissionModule' }
+
+
+
   ]),
   // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' }
