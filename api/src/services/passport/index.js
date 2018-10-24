@@ -5,6 +5,7 @@ import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import { jwtSecret, masterKey } from '../../config'
 import User, { schema } from '../../api/user/model'
+const { Strategy, email } = require('passport-zero')
 
 export const password = () => (req, res, next) =>
   passport.authenticate('password', { session: false }, (err, user, info) => {
@@ -18,6 +19,9 @@ export const password = () => (req, res, next) =>
       next()
     })
   })(req, res, next)
+
+export const passwordless = () =>
+  passport.authenticate('zero', { action: 'requestToken' })
 
 export const master = () =>
   passport.authenticate('master', { session: false })
@@ -33,6 +37,25 @@ export const token = ({ required, roles = User.roles } = {}) => (req, res, next)
     })
   })(req, res, next)
 
+passport.use(
+  new Strategy(
+    {
+      secret: 'zero cat',
+      deliver: email({
+        // Change yours data here
+        // Or create a .env file with the following variables
+        // For further information on smtp cofngurtion check https://github.com/eleith/emailjs
+        user: process.env.smtpServerUser,
+        from: process.env.smtpServerFrom,
+        password: process.env.smtpServerPassword,
+        port: process.env.smtpServerPort,
+        host: process.env.smtpServerHost,
+        ssl: true
+      })
+    },
+    email => User.findByEmail(email)
+  )
+)
 passport.use('password', new BasicStrategy((email, password, done) => {
   const userSchema = new Schema({ email: schema.tree.email, password: schema.tree.password })
 
@@ -46,7 +69,6 @@ passport.use('password', new BasicStrategy((email, password, done) => {
       return null
     }
     return user.authenticate(password, user.password).then((user) => {
-
       done(null, user)
       return null
     }).catch(done)
@@ -60,7 +82,6 @@ passport.use('master', new BearerStrategy((token, done) => {
     done(null, false)
   }
 }))
-
 passport.use('token', new JwtStrategy({
   secretOrKey: jwtSecret,
   jwtFromRequest: ExtractJwt.fromExtractors([

@@ -2,9 +2,9 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, emailInvitation } from './controller'
 import { schema } from './model'
-export {User,  schema } from './model'
+export User, { schema } from './model'
 
 const router = new Router()
 const { email, password, name, picture, role } = schema.tree
@@ -116,5 +116,21 @@ router.put('/:id/password',
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
+/**
+ * @api {post} /invitation Create user
+ * @apiName CreateUser
+ * @apiGroup User
+ * @apiPermission staff
+ * @apiParam {String} access_token  access_token.
+ * @apiParam {String} email User's email.
+ * @apiSuccess (Sucess 201) {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 Master access only.
+ * @apiError 409 Email already registered.
+ */
+router.post('/invitation',
+// token({ required: true, roles: ['staff'] }),
+  body({ email }),
+  emailInvitation)
 
 export default router

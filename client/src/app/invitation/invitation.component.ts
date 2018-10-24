@@ -24,13 +24,12 @@ export class InvitationComponent implements OnInit {
   }
   ngOnInit() {}
   onSubmit() {
-
     this.isLoading = true;
     //  retrive status
     //  show error if
     //  clear forms
      this.studentService.sendInvitation( this.myForm.value.email )
-      .pipe( finalize ( () => { console.log( 'response service' ); }))
-      .subscribe( ( resp: Object ) => { this.statusResponde = resp; });
+      .pipe( finalize ( () => { alert( 'Email Sendend' ); this.myForm.reset() ; }))
+      .subscribe( ( resp: Object ) => { this.statusResponde = resp; }, (error) => { alert(error); });
   }
 }

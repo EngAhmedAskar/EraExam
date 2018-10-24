@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
 import { User } from '.'
+import { passwordless } from '../../services/passport'
 import { sign } from '../../services/jwt'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
@@ -22,6 +23,25 @@ export const show = ({ params }, res, next) =>
 
 export const showMe = ({ user }, res) =>
   res.json(user.view(true))
+
+export const emailInvitation = ({ body: { email } }, res, next) =>
+  User.create({'email': email})
+    .then(user => {
+      passwordless(user)
+    })
+    .then(success(res))
+    .catch((err) => {
+      /* istanbul ignore else */
+      if (err.name === 'MongoError' && err.code === 11000) {
+        res.status(409).json({
+          valid: false,
+          param: 'email',
+          message: 'email already registered'
+        })
+      } else {
+        next(err)
+      }
+    })
 
 export const create = ({ bodymen: { body } }, res, next) =>
   User.create(body)

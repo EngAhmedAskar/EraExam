@@ -13,7 +13,7 @@ export class InvitationService {
   sendInvitation(email: String): Observable<string> {
     return this.httpClient
       .cache()
-      .post('/invitation',email)
+      .post('/invitation', email)
       .pipe(
         map((body: any) => body.value),
         catchError(() => of('Error,Can\'t send Invitation :-('))

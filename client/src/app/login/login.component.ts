@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
       }))
       .subscribe(credentials => {
-         console.log('login', credentials);
          log.debug(`${credentials.user} successfully logged in`);
          this.router.navigate(['/'], { replaceUrl: true });
       }, error => {

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 const routes = {
-  quote: (email: string) =>  `sendInvitation/email=${email}`
+  quote: () =>  `/users/invitation`
 };
 
 @Injectable({
@@ -15,12 +15,10 @@ export class StudentService {
 
   constructor(private httpClient: HttpClient) { }
 
-
   sendInvitation(email: string ) {
-    console.log(email);
     return this.httpClient
             .cache()
-            .get(routes.quote(email))
+            .post(routes.quote(), {email: email})
             .pipe(
               map((body: any) => body),
               catchError(() => of('Error, could not load joke :-('))

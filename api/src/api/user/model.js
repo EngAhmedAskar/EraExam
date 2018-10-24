@@ -17,7 +17,6 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
     minlength: 6
   },
   name: {
@@ -33,10 +32,6 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
-  },
-  is_activate: {
-    type: Boolean,
-    default: true
   }
 }, {
   timestamps: true
@@ -69,9 +64,8 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods = {
   view (full) {
-    console.log('full data', full)
     let view = {}
-    let fields = ['id', 'name', 'picture', 'role']
+    let fields = ['id', 'name', 'picture']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
