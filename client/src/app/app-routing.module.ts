@@ -7,7 +7,8 @@ const routes: Routes = [
     { path: 'about', loadChildren: 'app/about/about.module#AboutModule' },
     { path: 'invitation', loadChildren: 'app/invitation/invitation.module#InvitationModule' },
     
-{ path: '', loadChildren: 'app/questions/questions.module#QuestionsModule' }
+{ path: '', loadChildren: 'app/questions/questions.module#QuestionsModule' },
+{ path: '', loadChildren: 'app/admission/admission.module#AdmissionModule' }
 
   ]),
   // Fallback when no prior route is matched

@@ -4,7 +4,7 @@ import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
 
-const roles = ['student', 'admin', 'staff']
+const roles = ['student', 'admin', 'admission']
 
 const userSchema = new Schema({
   email: {
@@ -28,7 +28,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: roles,
-    default: 'student'
+    default: 'admission'
   },
   picture: {
     type: String,
@@ -55,17 +55,17 @@ userSchema.path('email').set(function (email) {
   return email
 })
 
-userSchema.pre('save', function (next) {
-  if (!this.isModified('password')) return next()
+// userSchema.pre('save', function (next) {
+//   if (!this.isModified('password')) return next()
 
-  /* istanbul ignore next */
-  const rounds = env === 'test' ? 1 : 9
+//   /* istanbul ignore next */
+//   const rounds = env === 'test' ? 1 : 9
 
-  bcrypt.hash(this.password, rounds).then((hash) => {
-    this.password = hash
-    next()
-  }).catch(next)
-})
+//   bcrypt.hash(this.password, rounds).then((hash) => {
+//     this.password = hash
+//     next()
+//   }).catch(next)
+// })
 
 userSchema.methods = {
   view (full) {

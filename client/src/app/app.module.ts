@@ -15,6 +15,7 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { QuestionsModule } from '@app/questions/questions.module';
+import { AdmissionModule } from '@app/admission/admission.module';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { QuestionsModule } from '@app/questions/questions.module';
     ExamModule,
     LoginModule,
     AppRoutingModule,
-    QuestionsModule
+    QuestionsModule,
+    AdmissionModule
   ],
   declarations: [AppComponent],
   providers: [

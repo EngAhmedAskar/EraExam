@@ -20,13 +20,13 @@ export class QuestionsComponent implements OnInit {
   }
   ngOnInit() {
   }
-  updateQ(e:object){
+  updateQ(e : any){
   if (e.is_active=true) {
     e.is_active=false;
   }else{
     e.is_active=true;
   }
-     this.EraServiceService.updateQuestion(e,e._id);
+     this.EraServiceService.updateQuestion(e,e._id).subscribe();
    
   }
 }

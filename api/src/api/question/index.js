@@ -4,7 +4,7 @@ import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
 import { index,create,update } from './controller'
 import { schema } from './model'
-export question, { schema } from './model'
+export question,{  schema } from './model'
 
 const router = new Router()
 const { description,is_active } = schema.tree
@@ -19,7 +19,7 @@ router.get('/',
   body({ description, is_active }),
   create)
   
-  router.put('/:id',
+  router.patch('/:id',
   // token({ required: true }),
   body({ description, is_active }),
   update)

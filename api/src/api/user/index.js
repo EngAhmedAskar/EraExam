@@ -4,10 +4,10 @@ import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
 import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
 import { schema } from './model'
-export { User,  schema } from './model'
+export  User,{  schema } from './model'
 
 const router = new Router()
-const { email, password, name, picture, role } = schema.tree
+const { email, password, name, is_activate, role } = schema.tree
 
 /**
  * @api {get} /users Retrieve users
@@ -21,7 +21,7 @@ const { email, password, name, picture, role } = schema.tree
  * @apiError 401 Admin access only.
  */
 router.get('/',
-  token({ required: true, roles: ['admin'] }),
+  // token({ required: true, roles: ['admin'] }),
   query(),
   index)
 
@@ -65,8 +65,8 @@ router.get('/:id',
  * @apiError 409 Email already registered.
  */
 router.post('/',
-  master(),
-  body({ email, password, name, picture, role }),
+  // master(),
+  body({ email, password, name,  role }),
   create)
 
 /**
@@ -82,9 +82,9 @@ router.post('/',
  * @apiError 401 Current user or admin access only.
  * @apiError 404 User not found.
  */
-router.put('/:id',
-  token({ required: true }),
-  body({ name, picture }),
+router.patch('/:id',
+  // token({ required: true }),
+  body({ name, is_activate }),
   update)
 
 /**
