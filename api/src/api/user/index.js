@@ -129,7 +129,7 @@ router.delete('/:id',
  * @apiError 409 Email already registered.
  */
 router.post('/invitation',
-  token({ required: true, roles: ['staff'] }),
+  //token({ required: true, roles: ['staff'] }),
   body({ email }),
   emailInvitation)
 export default router
