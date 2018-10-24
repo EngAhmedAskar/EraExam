@@ -1,25 +1,37 @@
 
- <!-- <div class="container">
+ <div class="container">
   <mat-card>
-   
+    <p>
+      <!-- <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/> -->
+    </p>
     <mat-card-content>
-     
-      <mat-card-subtitle> -->
-     
+      <!-- <mat-card-title translate>{{question.rows[0].is_active}}</mat-card-title> -->
+      <mat-card-subtitle>
+      <ul>
+        <!-- <li>{{question.rows[0].description}}</li> -->
+
+        <!-- <li *ngFor="let question of questions?.questions| async" >{{question}}</li> -->
+      </ul>
+        <li *ngFor="let question of questions| async" >{{question}}</li>
         <table>
           <tr *ngFor="let question of questions" >
-            <td >{{question.description}}</td>
+            <td>{{question.description}}</td>
             <td>
+<<<<<<< HEAD
                 <input type="checkbox" [checked]="question.is_active" (change)="updateQ(question)">
                 
               </td>
             <td>
                
             
+=======
+              <input type="checkbox" [checked]="question.is_active" >
+              <!-- <div *ngIf="{{question.is_active}}==true">Active</div > -->
+>>>>>>> f51e84297490832873e52fca20c2e02fc7945974
             </td>
           </tr>
         </table>
-       <!-- </mat-card-subtitle>
+       </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
-</div> -->
+</div>
