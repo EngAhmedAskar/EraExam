@@ -17,17 +17,15 @@
           <tr *ngFor="let question of questions" >
             <td>{{question.description}}</td>
             <td>
-<<<<<<< HEAD
+
                 <input type="checkbox" [checked]="question.is_active" (change)="updateQ(question)">
                 
               </td>
             <td>
                
             
-=======
-              <input type="checkbox" [checked]="question.is_active" >
-              <!-- <div *ngIf="{{question.is_active}}==true">Active</div > -->
->>>>>>> f51e84297490832873e52fca20c2e02fc7945974
+
+         
             </td>
           </tr>
         </table>
